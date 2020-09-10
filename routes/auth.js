@@ -7,8 +7,6 @@ const router = Router()
 router.post('/', (req, res) => {
     const user = _.get(req, 'body.user')
     const password = _.get(req, 'body.password')
-
-    // Assume query from database
     const mockUserRepo = new Promise(resolve => {
         resolve({
             "foo": {
@@ -28,6 +26,7 @@ router.post('/', (req, res) => {
         })
     })
 
+    // Assume query from database
     const cursor = mockUserRepo.then(r => _.get(r, user))
 
     from(cursor)
